@@ -1,0 +1,36 @@
+{
+  "common": {
+    "welcome": "Bienvenido",
+    "signIn": "Iniciar Sesión",
+    "signUp": "Registrarse",
+    "signOut": "Cerrar Sesión",
+    "email": "Correo Electrónico",
+    "password": "Contraseña",
+    "dashboard": "Panel de Control",
+    "settings": "Configuración",
+    "profile": "Perfil"
+  },
+  "nav": {
+    "home": "Inicio",
+    "solutions": "Soluciones",
+    "about": "Sobre Nosotros",
+    "contact": "Contacto"
+  },
+  "auth": {
+    "loginTitle": "Inicia Sesión en tu Cuenta",
+    "signupTitle": "Crear una Cuenta",
+    "forgotPassword": "¿Olvidaste tu Contraseña?",
+    "noAccount": "¿No tienes una cuenta?",
+    "haveAccount": "¿Ya tienes una cuenta?"
+  },
+  "dashboard": {
+    "welcomeBack": "Bienvenido de nuevo",
+    "quickActions": "Acciones Rápidas",
+    "recentActivity": "Actividad Reciente",
+    "analytics": {
+      "totalLogins": "Total de Inicios de Sesión",
+      "activeTools": "Herramientas Activas",
+      "lastLogin": "Último Inicio de Sesión"
+    }
+  }
+}

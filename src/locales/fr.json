@@ -1,0 +1,36 @@
+{
+  "common": {
+    "welcome": "Bienvenue",
+    "signIn": "Se Connecter",
+    "signUp": "S'inscrire",
+    "signOut": "Se Déconnecter",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "dashboard": "Tableau de bord",
+    "settings": "Paramètres",
+    "profile": "Profil"
+  },
+  "nav": {
+    "home": "Accueil",
+    "solutions": "Solutions",
+    "about": "À Propos",
+    "contact": "Contact"
+  },
+  "auth": {
+    "loginTitle": "Connexion à votre compte",
+    "signupTitle": "Créer un compte",
+    "forgotPassword": "Mot de passe oublié ?",
+    "noAccount": "Pas encore de compte ?",
+    "haveAccount": "Déjà un compte ?"
+  },
+  "dashboard": {
+    "welcomeBack": "Bon retour",
+    "quickActions": "Actions rapides",
+    "recentActivity": "Activité récente",
+    "analytics": {
+      "totalLogins": "Total des connexions",
+      "activeTools": "Outils actifs",
+      "lastLogin": "Dernière connexion"
+    }
+  }
+}

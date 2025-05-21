@@ -1,0 +1,36 @@
+{
+  "common": {
+    "welcome": "Welkom",
+    "signIn": "Inloggen",
+    "signUp": "Registreren",
+    "signOut": "Uitloggen",
+    "email": "E-mail",
+    "password": "Wachtwoord",
+    "dashboard": "Dashboard",
+    "settings": "Instellingen",
+    "profile": "Profiel"
+  },
+  "nav": {
+    "home": "Home",
+    "solutions": "Oplossingen",
+    "about": "Over Ons",
+    "contact": "Contact"
+  },
+  "auth": {
+    "loginTitle": "Login op je Account",
+    "signupTitle": "Account Aanmaken",
+    "forgotPassword": "Wachtwoord vergeten?",
+    "noAccount": "Nog geen account?",
+    "haveAccount": "Al een account?"
+  },
+  "dashboard": {
+    "welcomeBack": "Welkom terug",
+    "quickActions": "Snelle Acties",
+    "recentActivity": "Recente Activiteit",
+    "analytics": {
+      "totalLogins": "Totaal Aantal Logins",
+      "activeTools": "Actieve Tools",
+      "lastLogin": "Laatste Login"
+    }
+  }
+}

@@ -1,0 +1,427 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply antialiased;
+  }
+}
+
+/* Hero section animations */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes spin-slow {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Header energy animation */
+@keyframes energyFlow {
+  0% {
+    transform: translate(0%, 0%) scale(1);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate(2%, 1%) scale(1.02);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(1%, 2%) scale(1.01);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translate(-1%, 1%) scale(0.99);
+    opacity: 0.4;
+  }
+  100% {
+    transform: translate(0%, 0%) scale(1);
+    opacity: 0.3;
+  }
+}
+
+@keyframes energyPulse {
+  0% {
+    filter: blur(8px) brightness(0.9);
+  }
+  50% {
+    filter: blur(12px) brightness(1.1);
+  }
+  100% {
+    filter: blur(8px) brightness(0.9);
+  }
+}
+
+/* Navigation glow effect */
+.nav-link {
+  overflow: hidden;
+}
+
+.nav-link:hover .nav-glow,
+.nav-link.is-active .nav-glow {
+  opacity: 1;
+  transform: translateY(0);
+  box-shadow: 0 0 20px 2px rgba(168, 85, 247, 0.4);
+}
+
+.nav-glow {
+  transform: translateY(100%);
+  transition: all 0.3s ease;
+}
+
+/* Solutions page background animations */
+@keyframes backgroundPulse {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes floatShape {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(1);
+    opacity: 0.1;
+  }
+  25% {
+    transform: translate(5%, 5%) rotate(90deg) scale(1.05);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translate(10%, 0%) rotate(180deg) scale(1.1);
+    opacity: 0.3;
+  }
+  75% {
+    transform: translate(5%, -5%) rotate(270deg) scale(1.05);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(0, 0) rotate(360deg) scale(1);
+    opacity: 0.1;
+  }
+}
+
+@keyframes glowOrb {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate(2%, 2%) scale(1.1);
+    opacity: 0.5;
+  }
+}
+
+@keyframes darkRegion {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(1%, 1%) scale(1.05);
+    opacity: 0.6;
+  }
+}
+
+.solutions-background {
+  background: linear-gradient(45deg, #2A0944, #1B2CC1);
+  background-size: 400% 400%;
+  animation: backgroundPulse 12s ease infinite;
+}
+
+.geometric-shapes {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.geometric-shape {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  animation: floatShape 10s infinite ease-in-out;
+}
+
+.geometric-shape:nth-child(1) {
+  top: 10%;
+  left: 10%;
+  background: linear-gradient(45deg, rgba(42, 9, 68, 0.1), rgba(27, 44, 193, 0.1));
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  animation-delay: -2s;
+}
+
+.geometric-shape:nth-child(2) {
+  top: 40%;
+  right: 15%;
+  background: linear-gradient(45deg, rgba(27, 44, 193, 0.1), rgba(42, 9, 68, 0.1));
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  animation-delay: -4s;
+}
+
+.geometric-shape:nth-child(3) {
+  bottom: 20%;
+  left: 20%;
+  background: linear-gradient(45deg, rgba(42, 9, 68, 0.1), rgba(27, 44, 193, 0.1));
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+  animation-delay: -6s;
+}
+
+.glow-orb {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  border-radius: 50%;
+  animation: glowOrb 8s infinite ease-in-out;
+  filter: blur(100px);
+}
+
+.glow-orb:nth-child(1) {
+  top: 20%;
+  left: 30%;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.2), transparent 70%);
+  animation-delay: -2s;
+}
+
+.glow-orb:nth-child(2) {
+  top: 60%;
+  right: 20%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.2), transparent 70%);
+  animation-delay: -4s;
+}
+
+.dark-region {
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(0, 0, 0, 0.2), transparent 70%);
+  animation: darkRegion 12s infinite ease-in-out;
+  filter: blur(50px);
+}
+
+.dark-region:nth-child(1) {
+  top: 30%;
+  left: 20%;
+  animation-delay: -3s;
+}
+
+.dark-region:nth-child(2) {
+  bottom: 20%;
+  right: 10%;
+  animation-delay: -6s;
+}
+
+/* Gradient animation */
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.header-fire-container {
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 35%;
+  overflow: hidden;
+  pointer-events: none;
+  mask-image: 
+    linear-gradient(
+      to left,
+      black 60%,
+      transparent
+    );
+  -webkit-mask-image: 
+    linear-gradient(
+      to left,
+      black 60%,
+      transparent
+    );
+}
+
+.header-fire {
+  position: absolute;
+  inset: -50% -25% -50% -25%;
+  background: 
+    radial-gradient(
+      circle at right,
+      rgba(76, 0, 153, 0.9) 0%,
+      rgba(76, 0, 153, 0.4) 40%,
+      transparent 70%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      rgba(76, 0, 153, 0.3) 0%,
+      rgba(76, 0, 153, 0.6) 10%,
+      rgba(76, 0, 153, 0.3) 20%
+    );
+  filter: blur(8px);
+  animation: energyFlow 4s infinite ease-in-out;
+  will-change: transform, opacity, filter;
+  mix-blend-mode: screen;
+}
+
+.header-smoke {
+  position: absolute;
+  inset: -50% -25% -50% -25%;
+  background: 
+    radial-gradient(
+      ellipse at right,
+      rgba(76, 0, 153, 0.6) 0%,
+      rgba(76, 0, 153, 0.2) 50%,
+      transparent 80%
+    );
+  filter: blur(12px);
+  animation: energyFlow 6s infinite ease-in-out reverse;
+  will-change: transform, opacity;
+  mix-blend-mode: screen;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+/* Mobile menu transition */
+.mobile-menu {
+  transition: transform 0.3s ease-in-out;
+}
+
+/* Prevent body scroll when mobile menu is open */
+body.menu-open {
+  overflow: hidden;
+}
+
+/* Loader animation for Spline component */
+.loader {
+  width: 48px;
+  height: 48px;
+  border: 5px solid #FFF;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Fade in animation */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.8s ease-out forwards;
+}
+
+/* Dashboard animations */
+.fade-in-animation {
+  animation: fadeIn 0.4s ease-out forwards;
+}
+
+/* Sparkles animation for dashboard content */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50% { opacity: 1; transform: scale(1); }
+}
+
+.sparkle {
+  position: absolute;
+  background: radial-gradient(circle, rgba(147, 51, 234, 0.8) 0%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  animation: sparkle 2s infinite;
+}
+
+/* Pulse animation for the interactive builder */
+@keyframes pulsate {
+  0%, 100% { 
+    transform: scale(1); 
+    opacity: 0.2;
+  }
+  50% { 
+    transform: scale(1.2); 
+    opacity: 0.4;
+  }
+}
+
+/* Wave animation for section transitions */
+@keyframes wave {
+  0% {
+    transform: translateX(-50%) scaleY(1);
+  }
+  50% {
+    transform: translateX(-25%) scaleY(0.8);
+  }
+  100% {
+    transform: translateX(0%) scaleY(1);
+  }
+}
+
+/* Gradient transition for section connections */
+.section-transition {
+  background: linear-gradient(to bottom, transparent, rgba(10, 10, 31, 0.8) 40%, rgba(10, 10, 31, 1));
+  height: 100px;
+  margin-top: -100px;
+}

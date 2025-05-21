@@ -1,0 +1,36 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "signIn": "Sign In",
+    "signUp": "Sign Up",
+    "signOut": "Sign Out",
+    "email": "Email",
+    "password": "Password",
+    "dashboard": "Dashboard",
+    "settings": "Settings",
+    "profile": "Profile"
+  },
+  "nav": {
+    "home": "Home",
+    "solutions": "Solutions",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "auth": {
+    "loginTitle": "Login to Your Account",
+    "signupTitle": "Create an Account",
+    "forgotPassword": "Forgot Password?",
+    "noAccount": "Don't have an account?",
+    "haveAccount": "Already have an account?"
+  },
+  "dashboard": {
+    "welcomeBack": "Welcome back",
+    "quickActions": "Quick Actions",
+    "recentActivity": "Recent Activity",
+    "analytics": {
+      "totalLogins": "Total Logins",
+      "activeTools": "Active Tools",
+      "lastLogin": "Last Login"
+    }
+  }
+}
