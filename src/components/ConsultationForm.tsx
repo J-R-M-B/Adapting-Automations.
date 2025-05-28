@@ -4,6 +4,8 @@ import {
   Settings, Plus, X, ArrowRight, Lightbulb, Target, Workflow
 } from 'lucide-react';
 import toast from 'react-hot-toast';
+import { supabase } from '../lib/supabase';
+import { useAuth } from '../lib/auth';
 
 interface FormData {
   firstName: string;
@@ -34,6 +36,7 @@ const industries = [
 ];
 
 export function ConsultationForm() {
+  const { user } = useAuth();
   const [formData, setFormData] = useState<FormData>({
     firstName: '',
     lastName: '',
@@ -82,17 +85,21 @@ export function ConsultationForm() {
     setIsSubmitting(true);
 
     try {
-      // Send to webhook
-      await fetch('https://hook.eu2.make.com/b4oxd6e27jakrnsk6u1rawhyjlay0kp5', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          action: "Schedule Consultation",
-          ...formData
-        })
+      // Insert into Supabase
+      const { error } = await supabase.from('schedule_call_submissions').insert({
+        user_id: user?.id || null,
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        email: formData.email,
+        phone: formData.phone || null,
+        company: formData.companyName || null,
+        solution_type: formData.industry,
+        preferred_date: new Date().toISOString().split('T')[0], // Current date as fallback
+        preferred_time: '09:00', // Default time as fallback
+        message: formData.companyDescription + '\n\n' + formData.automationGoal
       });
+
+      if (error) throw error;
 
       toast.success('Consultation request submitted successfully!');
       // Reset form

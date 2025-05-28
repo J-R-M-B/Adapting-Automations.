@@ -2,6 +2,8 @@ import { useState } from 'react';
 import { MapPin, Mail, Phone, Copy, Check, Building2 } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import { supabase } from '../lib/supabase';
+import { useAuth } from '../lib/auth';
+import { supabase } from '../lib/supabase';
 
 interface FormData {
   name: string;
@@ -11,6 +13,7 @@ interface FormData {
 }
 
 export function Contact() {
+  const { user } = useAuth();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -30,22 +33,16 @@ export function Contact() {
     setIsSubmitting(true);
 
     try {
-      // Send to webhook
-      await fetch('https://hook.eu2.make.com/b4oxd6e27jakrnsk6u1rawhyjlay0kp5', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          "Action": "Contact",
-          ...formData
-        })
-      });
-
-      // Store in Supabase
+      // Insert into Supabase contact_form_submissions table
       const { error } = await supabase
-        .from('contact_messages')
-        .insert([formData]);
+        .from('contact_form_submissions')
+        .insert({
+          user_id: user?.id || null,
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message
+        });
 
       if (error) throw error;
 
