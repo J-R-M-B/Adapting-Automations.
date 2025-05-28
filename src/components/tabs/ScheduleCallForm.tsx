@@ -1,10 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { 
   X, ArrowRight, Calendar, Clock, Phone, User, Mail, Building, 
-  CheckCircle2, Calendar as CalendarIcon, ChevronDown, ChevronUp
+  CheckCircle2, Calendar as CalendarIcon, ChevronDown, ChevronUp,
+  AlertCircle
 } from 'lucide-react';
 import { Solution } from '../../types/solutions';
 import { solutionsData } from '../../data/solutionsData';
+import { supabase } from '../../lib/supabase';
+import { useAuth } from '../../lib/auth';
+import toast from 'react-hot-toast';
 
 interface ScheduleCallFormProps {
   isOpen: boolean;
@@ -20,6 +24,7 @@ const TIME_SLOTS = [
 ];
 
 export function ScheduleCallForm({ isOpen, onClose, initialSolution }: ScheduleCallFormProps) {
+  const { user } = useAuth();
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -132,53 +137,26 @@ export function ScheduleCallForm({ isOpen, onClose, initialSolution }: ScheduleC
       return;
     }
     
-    // Submit form
     setIsSubmitting(true);
     
     try {
-      // Get solution title from ID
-      const solutionTitle = formData.solution === 'custom' 
-        ? 'Custom Solution' 
-        : solutionsData.find(s => s.id === formData.solution)?.title || formData.solution;
-      
-      // Format date for better readability
-      const formattedDate = selectedDate 
-        ? selectedDate.toLocaleDateString('en-US', {
-            weekday: 'long',
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-          })
-        : formData.date;
-      
-      // Prepare data for webhook
-      const webhookData = {
-        action: "Schedule Call",
-        firstName: formData.firstName,
-        lastName: formData.lastName,
+      // Insert into Supabase
+      const { error } = await supabase.from('schedule_call_submissions').insert({
+        user_id: user?.id || null,
+        first_name: formData.firstName,
+        last_name: formData.lastName,
         email: formData.email,
-        company: formData.company || "Not provided",
-        phone: formData.phone || "Not provided",
-        solution: solutionTitle,
-        date: formattedDate,
-        time: `${formData.time} (GMT+1)`,
-        timestamp: new Date().toISOString()
-      };
-      
-      // Send data to webhook
-      const response = await fetch('https://hook.eu2.make.com/b4oxd6e27jakrnsk6u1rawhyjlay0kp5', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(webhookData)
+        phone: formData.phone || null,
+        company: formData.company || null,
+        solution_type: formData.solution,
+        preferred_date: formData.date,
+        preferred_time: formData.time,
+        message: null
       });
       
-      if (!response.ok) {
-        throw new Error(`Webhook error: ${response.status}`);
-      }
+      if (error) throw error;
       
-      console.log('Form submitted successfully:', webhookData);
+      toast.success('Your call has been scheduled successfully!');
       setSubmitSuccess(true);
       
       // Reset form after 3 seconds and close modal
@@ -423,6 +401,7 @@ export function ScheduleCallForm({ isOpen, onClose, initialSolution }: ScheduleC
                       <div className="relative">
                         <input
                           type="text"
+                          id="firstName"
                           name="firstName"
                           value={formData.firstName}
                           onChange={handleInputChange}
@@ -446,6 +425,7 @@ export function ScheduleCallForm({ isOpen, onClose, initialSolution }: ScheduleC
                       <div className="relative">
                         <input
                           type="text"
+                          id="lastName"
                           name="lastName"
                           value={formData.lastName}
                           onChange={handleInputChange}
@@ -470,6 +450,7 @@ export function ScheduleCallForm({ isOpen, onClose, initialSolution }: ScheduleC
                     <div className="relative">
                       <input
                         type="email"
+                        id="email"
                         name="email"
                         value={formData.email}
                         onChange={handleInputChange}
@@ -493,6 +474,7 @@ export function ScheduleCallForm({ isOpen, onClose, initialSolution }: ScheduleC
                     <div className="relative">
                       <input
                         type="text"
+                        id="company"
                         name="company"
                         value={formData.company}
                         onChange={handleInputChange}
@@ -511,6 +493,7 @@ export function ScheduleCallForm({ isOpen, onClose, initialSolution }: ScheduleC
                     <div className="relative">
                       <input
                         type="tel"
+                        id="phone"
                         name="phone"
                         value={formData.phone}
                         onChange={handleInputChange}
@@ -540,6 +523,7 @@ export function ScheduleCallForm({ isOpen, onClose, initialSolution }: ScheduleC
                       Which solution are you interested in? *
                     </label>
                     <select
+                      id="solution"
                       name="solution"
                       value={formData.solution}
                       onChange={handleInputChange}
