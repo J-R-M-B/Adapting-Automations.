@@ -1,5 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
 import { 
+  motion, useScroll, useTransform, AnimatePresence 
+} from 'framer-motion';
+import { 
   Globe, CheckCircle2, ArrowUpRight, Settings, Workflow, Zap, 
   ArrowRight, MessageSquare, Database, Shield, Sparkles, 
   Laptop, BrainCircuit, Lightbulb, Layers, Target, Phone,
