@@ -9,7 +9,6 @@ import {
   Crown, Gift, Award
 } from 'lucide-react';
 import { Solution } from '../../types/solutions';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { FeatureShowcase } from './features/FeatureShowcase';
 import { TechStack } from './features/TechStack';
 import { ProcessTimeline } from './features/ProcessTimeline';
