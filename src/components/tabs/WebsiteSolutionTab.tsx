@@ -306,10 +306,6 @@ export function WebsiteSolutionTab({ solution, onRequestCustomSolution }: Websit
           opacity: headerOpacity,
           y: headerTranslateY,
         }}
-        style={{
-          opacity: headerOpacity,
-          y: headerTranslateY,
-        }}
       >
         {/* Animated glowing border */}
         <div className="absolute inset-0 rounded-2xl border border-indigo-500/30 z-10 overflow-hidden">
@@ -631,4 +627,8 @@ export function WebsiteSolutionTab({ solution, onRequestCustomSolution }: Websit
               <path d="M12 2L2 12M2 2L2 12L12 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
           </div>
-          
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}

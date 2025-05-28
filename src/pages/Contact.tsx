@@ -3,7 +3,6 @@ import { MapPin, Mail, Phone, Copy, Check, Building2 } from 'lucide-react';
 import toast, { Toaster } from 'react-hot-toast';
 import { supabase } from '../lib/supabase';
 import { useAuth } from '../lib/auth';
-import { supabase } from '../lib/supabase';
 
 interface FormData {
   name: string;
