@@ -4,7 +4,8 @@ import {
   Wrench, Zap, Cpu, Settings, Workflow, ArrowRight, 
   Target, DollarSign, Clock, Lightbulb, CheckCircle2, 
   ChevronDown, Sparkles, Phone, Code, Database, BrainCircuit,
-  Plus, Minus, X, FileText, BarChart, Globe, MessageSquare
+  Plus, Minus, X, FileText, BarChart, Globe, MessageSquare,
+  ArrowUpRight, Bot
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { supabase } from '../../lib/supabase';
